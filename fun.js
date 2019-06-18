@@ -5,7 +5,11 @@ const settings = {
     token: 'NTkwNTYwNDQwNjU2ODU1MDUz.XQkAag.Jqcj6743NWDGFrdhkFpLOoCsyYs'
   }
 
-Le bot va répondre à une question aléatoirement :
+ client.on('message', async message => {
+    var command = message.content.toLowerCase().slice(settings.prefix.length).split(' ')[0];
+    var args = message.content.split(' ').slice(1);
+    if(message.author.bot) return;
+    if (!message.content.startsWith(settings.prefix) || message.author.bot) return;
 if (command === '8ball') {
 
 if(!args[1]) return message.reply("Merci d'entrer une question complète avec 2 mots ou plus!");

@@ -17,7 +17,7 @@ const settings = {
 
 //vos scripts
 
-});
+
 
 client.on("guildMemberAdd", member =>{
     const welcome = member.guild.channels.find((x) => x.id === "")//id du chanel entre les "" 
@@ -73,6 +73,7 @@ let embed = new Discord.RichEmbed()
                       
                               message.channel.send(embed);
                        }
-  
+)};
+
 client.login(settings.token);
  

@@ -1,5 +1,9 @@
-const Discord = require('discord.js')
-const settings = require('./index.js)
+const Discord = require('discord.js');
+
+const settings = {
+    prefix: ''',
+    token: 'NTkwNTYwNDQwNjU2ODU1MDUz.XQkAag.Jqcj6743NWDGFrdhkFpLOoCsyYs'
+  }
 
  if (command === 'avatar') {
                                 let mentionedUser = message.mentions.users.first() || message.author;

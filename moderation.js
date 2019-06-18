@@ -198,4 +198,36 @@ if(command === "purge") {
                           await message.channel.send(`Je viens de donner à **${rMember.user.username}** le rôle **${gRole.name}**`)
                       
                         } 
+  if (command === 'removerole') {
+                        if(args[0] == "help"){
+                          let helpembxd = new Discord.RichEmbed()
+                          .setColor("#00ff00")
+                          .addField("Retirer un rôle", "Usage: b!removerole <@user> <role>")
+                      
+                          message.channel.send(helpembxd);
+                          return;
+                        } 
+                      
+                        let xdemb = new Discord.RichEmbed()
+                        .setColor("#00ff00")
+                        .setTitle(`Retirez un rôle`)
+                        .addField("Description:", "Retirer le rôle d'une personne", true)
+                        .addField("Usage", "b!removerole [user] [role]", true)
+                        .addField("Example", "'removerole @user Membre")
+   if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("Pour cela, vous avez besoin de la premission `MANAGE_ROLES`");
+                        let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+                        if(!rMember) return message.channel.send(xdemb);
+                      
+                        let role = args.join(" ").slice(22);
+                      
+                        if(!role) return message.channel.send("Spécifiez un rôle!");
+                        let gRole = message.guild.roles.find(`name`, role);
+                        if(!gRole) return message.channel.send("Impossible de trouver ce rôle.");
+                      
+                        if(!rMember.roles.has(gRole.id)) return message.channel.send("Cet utilisateur n'a pas ce rôle.");
+                        await(rMember.removeRole(gRole.id));
+                      
+                        await message.channel.send(`Je viens de supprimer le rôle **${gRole.name}** a **${rMember.user.username}**`)
+  
+                      } 
 

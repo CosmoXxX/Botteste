@@ -48,3 +48,5 @@ if(command === "ping") {
     
             
             }
+
+)};

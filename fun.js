@@ -69,4 +69,5 @@ if (command === 'morse') {
             return message.channel.send("+text+");
       
       }
-  
+
+  )};

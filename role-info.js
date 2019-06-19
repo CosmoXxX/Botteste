@@ -1,17 +1,42 @@
-const Discord = require("discord.js");
-const bot = new Discord.Client();
-exports.run = (client, message, args) => {
-    let roletocheck = args.join(" ")
-    let role = client.guilds.get(message.guild.id).roles.find('name', roletocheck);
-    if (!role) return message.channel.send("Ce role n'existe pas dans ce serveur.")
-    //const serialized = role.permissions.serialize();
-    //const perms = Object.keys(permissions).filter(perm => serialized[perm]);
-      const embed = new Discord.RichEmbed()
-      .setColor(0x00A2E8)
-      .addField('Nom du role', `{role.name}`, true)
-      .addField('ID du role', `${role.id}`, true)
-      .addField('Créé le ', role.createdAt.toDateString())
-      .addField("Mentionable: ", role.mentionable ? 'Yes' : 'No')
-      .addField('Permissions' , perms.map(perm => permissions[perm]).join(', ') || 'None')
-      message.channel.send({embed}) 
+
+
+ client.on('message', async message => {
+    var command = message.content.toLowerCase().slice(settings.prefix.length).split(' ')[0];
+    var args = message.content.split(' ').slice(1);
+    if(message.author.bot) return;
+    if (!message.content.startsWith(settings.prefix) || message.author.bot) return;
+
+if(command === "coucou") {
+message.channel.send("salut")
 }
+
+});
+if (command === 'role-info') {
+ let inline = true
+
+    let role = args.join(` `)
+    if(!role) return message.reply("Specify a role!");
+    let gRole = message.guild.roles.find(`name`, role);
+    if(!gRole) return message.reply("Couldn't find that role.");
+
+    const status = {
+        false: "No",
+        true: "Yes"
+      }
+
+    let roleemebed = new Discord.RichEmbed()
+    .setColor("#00ff00")
+    .addField("ID", gRole.id, inline )
+    .addField("Name", gRole.name, inline)
+    .addField("Mention", `\`<@${gRole.id}>\``, inline)
+    .addField("Hex", gRole.hexColor, inline)
+    .addField("Members", gRole.members.size, inline)
+    .addField("Position", gRole.position, inline)
+    .addField("Hoisted", status[gRole.hoist], inline)
+    .addField("Mentionable", status[gRole.mentionable], inline)
+    .addField("Managed", status[gRole.managed], inline)
+    
+    message.channel.send(roleemebed);
+
+}
+ 
